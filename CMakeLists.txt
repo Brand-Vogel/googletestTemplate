@@ -19,3 +19,7 @@ add_subdirectory(Coin)
 add_executable(app main.cpp)
 target_include_directories(app PRIVATE ${CMAKE_SOURCE_DIR})
 target_link_libraries(app coin)
+
+add_executable(test test.cpp)
+target_include_directories(test PRIVATE ${CMAKE_SOURCE_DIR})
+target_link_libraries(test gtest gtest_main)
