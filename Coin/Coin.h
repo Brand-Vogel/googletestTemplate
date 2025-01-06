@@ -1,5 +1,8 @@
 #pragma once 
 
+#include <memory>
+#include "RandomGenerator/IRandomGenerator.h"
+
 enum TossResults 
 {
     Heads,
@@ -9,9 +12,12 @@ enum TossResults
 class Coin
 {
 public:
-    Coin();
+    Coin(std::unique_ptr<IRandomGenerator> randomGenerator);
     ~Coin();
     TossResults Toss();
+
+private:
+    std::unique_ptr<IRandomGenerator> m_randomGenerator;
 };
 
 

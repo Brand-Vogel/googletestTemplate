@@ -1,7 +1,9 @@
 #include "Coin.h"
-#include "RandomGenerator/RandomGenerator.h"
-Coin::Coin()
+
+
+Coin::Coin(std::unique_ptr<IRandomGenerator> randomGenerator)
 {
+    m_randomGenerator = std::move(randomGenerator);
 }
 
 Coin::~Coin()
@@ -10,8 +12,7 @@ Coin::~Coin()
 
 TossResults Coin::Toss()
 {
-    RandomGenerator random;
-    if(random.Generate() < 50)
+    if(m_randomGenerator->Generate() < 50)
     {
         return TossResults::Heads;
     }

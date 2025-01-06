@@ -1,9 +1,11 @@
 #pragma once
 
-class RandomGenerator
+#include "IRandomGenerator.h"
+
+class RandomGenerator : public IRandomGenerator
 {
     public:
         RandomGenerator();
         ~RandomGenerator();
-        int Generate();
+        virtual int Generate() override;
 };
