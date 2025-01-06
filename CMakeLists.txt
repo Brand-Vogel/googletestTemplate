@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.11)
 project(googletestExample)
 
 #C++14 required by GoogleTest
@@ -22,4 +22,4 @@ target_link_libraries(app coin)
 
 add_executable(test test.cpp)
 target_include_directories(test PRIVATE ${CMAKE_SOURCE_DIR})
-target_link_libraries(test gtest gtest_main)
+target_link_libraries(test coin gtest gtest_main gmock_main)
