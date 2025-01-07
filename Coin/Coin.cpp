@@ -1,9 +1,9 @@
 #include "Coin.h"
 
 
-Coin::Coin(std::unique_ptr<IRandomGenerator> randomGenerator)
+Coin::Coin(IRandomGenerator *randomGenerator)
 {
-    m_randomGenerator = std::move(randomGenerator);
+    m_randomGenerator = randomGenerator;
 }
 
 Coin::~Coin()

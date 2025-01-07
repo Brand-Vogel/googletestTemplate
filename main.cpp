@@ -6,7 +6,8 @@
 
 int main()
 {
-    Coin coin(std::make_unique<RandomGenerator>());
+    RandomGenerator randomGenerator;
+    Coin coin(&randomGenerator);
     if(coin.Toss() == TossResults::Heads)
     {
         std::cout << "heads" << std::endl;

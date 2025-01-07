@@ -6,24 +6,30 @@
 class CoinTossTest : public testing::Test {
 public:
     std::unique_ptr<Coin> m_coin;
-    RandomGeneratorMock *m_randomGeneratorMock;
+    std::shared_ptr<testing::StrictMock<RandomGeneratorMock>> m_randomGeneratorMock;
 
     void SetUp()
     {
-        // Code here will be called immediately after the constructor (right before each test).
-        auto randomGeneratorMock = std::make_shared<testing::StrictMock<RandomGeneratorMock>>();
-        m_randomGeneratorMock = randomGeneratorMock.get();
-
-        m_coin = std::make_unique<Coin>(std::make_unique<RandomGeneratorMock>());
+        m_randomGeneratorMock = std::make_shared<testing::StrictMock<RandomGeneratorMock>>();
+        m_coin = std::make_unique<Coin>(m_randomGeneratorMock.get());
 
     }
 };
 
-TEST_F(CoinTossTest, ExampleTest) {
-
-    EXPECT_CALL(*m_randomGeneratorMock, Generate()).Times(3).WillOnce(testing::Return(50));
+TEST_F(CoinTossTest, TossReturnsHeadsWhenRandomNumberIsLessThan50)
+{
+    RandomGeneratorMock *randomGeneratorMock = m_randomGeneratorMock.get();   
+    EXPECT_CALL(*randomGeneratorMock, Generate()).WillOnce(testing::Return(49));
     auto result = m_coin->Toss();
     EXPECT_EQ(result, TossResults::Heads);
+}
+
+TEST_F(CoinTossTest, TossReturnsTailsWhenRandomNumberIsGreaterThan50)
+{
+    RandomGeneratorMock *randomGeneratorMock = m_randomGeneratorMock.get();   
+    EXPECT_CALL(*randomGeneratorMock, Generate()).WillOnce(testing::Return(51));
+    auto result = m_coin->Toss();
+    EXPECT_EQ(result, TossResults::Tails);
 }
 
 int main(int argc, char **argv) {
