@@ -12,12 +12,12 @@ enum TossResults
 class Coin
 {
 public:
-    Coin(IRandomGenerator *randomGenerator);
+    Coin(const std::shared_ptr<IRandomGenerator> &randomGenerator);
     ~Coin();
     TossResults Toss();
 
 private:
-    IRandomGenerator *m_randomGenerator;
+    std::shared_ptr<IRandomGenerator> m_randomGenerator;
 };
 
 

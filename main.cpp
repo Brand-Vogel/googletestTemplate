@@ -6,8 +6,8 @@
 
 int main()
 {
-    RandomGenerator randomGenerator;
-    Coin coin(&randomGenerator);
+    auto r = std::make_shared<RandomGenerator>();
+    Coin coin(r);
     if(coin.Toss() == TossResults::Heads)
     {
         std::cout << "heads" << std::endl;

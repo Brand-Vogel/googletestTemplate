@@ -1,9 +1,8 @@
 #include "Coin.h"
 
 
-Coin::Coin(IRandomGenerator *randomGenerator)
+Coin::Coin(const std::shared_ptr<IRandomGenerator> &randomGenerator) : m_randomGenerator(randomGenerator)
 {
-    m_randomGenerator = randomGenerator;
 }
 
 Coin::~Coin()
