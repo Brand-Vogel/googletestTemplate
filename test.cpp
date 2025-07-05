@@ -11,10 +11,16 @@ public:
     void SetUp() override
     {
         m_randomGeneratorMock = std::make_shared<testing::StrictMock<RandomGeneratorMock>>();
+
+        //INstantiate a Coin object by injecting a RandomGeneratorMock instance
         m_coin = std::make_unique<Coin>(m_randomGeneratorMock);
     }
 };
 
+/**
+ * @brief This test verifies that when the IRandomGenerator object returns a
+ * number smaller than 50, the result is Heads
+ */
 TEST_F(CoinTossTest, TossReturnsHeadsWhenRandomNumberIsLessThan50)
 {  
     EXPECT_CALL(*m_randomGeneratorMock, Generate()).WillOnce(testing::Return(49));
@@ -22,6 +28,10 @@ TEST_F(CoinTossTest, TossReturnsHeadsWhenRandomNumberIsLessThan50)
     EXPECT_EQ(result, TossResults::Heads);
 }
 
+/**
+ * @brief This test verifies that when the IRandomGenerator object returns a
+ * number greater than 50, the result is Tails
+ */
 TEST_F(CoinTossTest, TossReturnsTailsWhenRandomNumberIsGreaterThan50)
 {
     EXPECT_CALL(*m_randomGeneratorMock, Generate()).WillOnce(testing::Return(51));

@@ -12,8 +12,23 @@ enum TossResults
 class Coin
 {
 public:
-    Coin(const std::shared_ptr<IRandomGenerator> &randomGenerator);
+    /**
+     * @brief Constructot of the Coin class.
+     * @param randomGenerator A pointer to an object implementing
+     * the IRandomGenerator interface. It is used as the engine to
+     * drive the flipping of the coin functionality
+     */
+    Coin(const std::shared_ptr<IRandomGenerator> randomGenerator);
+
+    /**
+     * @brief Class destructor
+     */
     ~Coin();
+
+    /**
+     * @brief Simulates a coin toss
+     * @return TossResults::Heads or TossResults::Tails randomly
+     */
     TossResults Toss();
 
 private:

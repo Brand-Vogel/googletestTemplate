@@ -6,8 +6,10 @@
 
 int main()
 {
-    auto r = std::make_shared<RandomGenerator>();
-    Coin coin(r);
+    //Instantiate a Coin injecting a RandomGenerator object
+    Coin coin(std::make_shared<RandomGenerator>());
+    
+    // Run Toss and print the results
     if(coin.Toss() == TossResults::Heads)
     {
         std::cout << "heads" << std::endl;

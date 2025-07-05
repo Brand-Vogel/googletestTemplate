@@ -1,14 +1,15 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.14)
 project(googletestExample)
 
-#C++14 required by GoogleTest
-set(CMAKE_CXX_STANDARD 14)
+#C++17 required by GoogleTest
+set(CMAKE_CXX_STANDARD 17)
 
 #Get GoogleTest. Based on the tutorial at https://google.github.io/googletest/quickstart-cmake.html
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG v1.17.0
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
