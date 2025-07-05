@@ -8,7 +8,29 @@ RandomGenerator: The real and mock implementations of the random generator, toge
 Coin: The implementation of the Coin class.  
 main.cpp: A sample application using the real implementations of the Coin + RandomGenerator classes.
 test.cpp: A suite of unit tests using the mocked random generator implementation.  
-  
+
 ## Dependencies
-- This prject requires a c++17 compiler (for googletest 1.17.0)  
+- cmake
+- A c++17 compiler (for googletest 1.17.0)  
 - googletest is automatically checked-out by cmake when building
+
+## Building the project
+```
+mkdir <build_directory>
+cd <build_directory>
+cmake <project_directory>
+make
+```
+
+## Running the application
+After building:  
+```
+./app
+```
+
+## Running the tests
+After building:  
+```
+./test
+```
+
